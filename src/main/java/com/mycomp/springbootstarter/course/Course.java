@@ -1,27 +1,43 @@
-package com.mycomp.springbootstarter.topic;
+package com.mycomp.springbootstarter.course;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.mycomp.springbootstarter.topic.Topic;
 
 @Entity
-public class Topic {
+public class Course {
 
 	@Id
 	private String id;
 	private String name;
 	private String description;
 	
-	public Topic(){
+	@ManyToOne
+	private Topic topic;
+	
+	public Course(){
 		
 	};
 	
-	public Topic(String id, String name, String description) {
+	public Course(String id, String name, String description, String topicId) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
+		this.topic = new Topic(topicId, "", "");
+		//change this for name and desc later
 	}
 	
+	public Topic getTopic() {
+		return topic;
+	}
+
+	public void setTopic(Topic topic) {
+		this.topic = topic;
+	}
+
 	public String getId() {
 		return id;
 	}
